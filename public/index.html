@@ -1,0 +1,35 @@
+<html>
+<head></head>
+<body>
+
+<div><form  action='/signup' method="post">
+username:<input type="text" name='username' ><br>
+password<input type="password" name="password" >
+<input type="submit"></fom></div><div>
+<form  action='/test' method="post">
+username:<input type="text" name='text' ><br>
+
+<input type="submit"></fom></div>
+<form id='soc' action=""><input type="text" id="chat" placeholder='type' name="msg"><button type="button" id='snd'>Send</button></form>
+<span id="messages"></span>
+<script src="./socket.io.js"></script>
+<script src="./jquery.js"></script>
+<script>$(function(){
+  var socket =io();
+  $("#snd").click(function(){
+    event.preventDefault();
+    socket.emit('chat message',$('#chat').val());
+    $('#chat').val('');
+    return false;
+
+  });
+
+  socket.on('chat message',function(msg){
+    alert(msg);
+  });
+});
+
+
+</script>
+</body>
+</html>
